@@ -1,0 +1,8 @@
+{
+	"twee3LanguageTools.storyformat.current": "sugarcube-2",
+	"[twee3-sugarcube-2]": {
+		"editor.semanticHighlighting.enabled": true,
+		"editor.wordWrap": "wordWrapColumn",
+		"editor.wordWrapColumn": 80
+	},
+}
