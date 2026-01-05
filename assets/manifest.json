@@ -1,0 +1,23 @@
+{
+	"name": "SugarShock",
+	"short_name": "SugarShock",
+	"icons": [
+		{
+			"src": "icojam/icon-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "icojam/icon-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "icojam/icon.svg",
+			"type": "image/svg+xml",
+			"sizes": "any"
+		}
+	],
+	"start_url": "../index.html",
+	"display": "standalone"
+}
