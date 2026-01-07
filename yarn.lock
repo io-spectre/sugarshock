@@ -14,6 +14,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/serviceworker@npm:^0.0.172":
+  version: 0.0.172
+  resolution: "@types/serviceworker@npm:0.0.172"
+  checksum: 10c0/db2eea8c2b9afe17f5b72a2b91fddf4c9644ad5f5d825ff4ea9eae1967143006e3e849e37a6e8bb3b955db57c5fc191b77dfb9f0a0b11752f01f026753ce53da
+  languageName: node
+  linkType: hard
+
 "@types/sizzle@npm:*":
   version: 2.3.10
   resolution: "@types/sizzle@npm:2.3.10"
@@ -34,6 +41,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sugarshock@workspace:."
   dependencies:
+    "@types/serviceworker": "npm:^0.0.172"
     "@types/twine-sugarcube": "npm:~2.37.2"
   languageName: unknown
   linkType: soft
