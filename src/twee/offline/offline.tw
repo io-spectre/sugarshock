@@ -1,18 +1,18 @@
 :: Offline Support
 
-Offline support is provided via a service worker that caches essential assets for offline use. To enable offline support, ensure that your story is served over HTTPS or from a `localhost` origin.
+Offline support is provided via a service worker that caches essential assets for offline use. To enable offline support, ensure that your story is served over HTTPS or from a {{{localhost}}} origin.
 
-You can try it out in with this demo story by enabling the service worker in the Settings menu. Just ensure that you're either visiting the story on https://io-spectre.github.io/sugarshock/ or a localhost server.
+You can try it out in with this demo story by enabling the service worker in the Settings menu. Just ensure that you're either visiting the story on https://io-spectre.github.io/sugarshock/ or a {{{localhost}}} server.
 
 To add offline support to your SugarCube 2 story, include the following script in your story's JavaScript section https://github.com/io-spectre/sugarshock/blob/main/src/twee/offline/service-worker-manager.js . The script will automatically add a setting for enabling/disabling offline support in the SugarCube settings menu.
 
-Additionally you have to name your game file `index.html` and place the `service-worker.js` file in the same directory as your story file. You can find the `service-worker.js` file here: https://github.com/io-spectre/sugarshock/blob/main/service-worker.js
+Additionally you have to name your game file {{{index.html}}} and place the {{{service-worker.js}}} file in the same directory as your story file. You can find the {{{service-worker.js}}} file here: https://github.com/io-spectre/sugarshock/blob/main/service-worker.js
 
-And lastly you need to create an `assets/offline-index.txt` file that lists all the assets to be cached for offline use. You can generate this file using a build tool with a combination of [[fd|https://github.com/sharkdp/fd/releases]] and [[b3sum|https://github.com/BLAKE3-team/BLAKE3/releases]] like so:
+And lastly you need to create an {{{assets/offline-index.txt}}} file that lists all the assets to be cached for offline use. You can generate this file using a build tool with a combination of [[fd|https://github.com/sharkdp/fd/releases]] and [[b3sum|https://github.com/BLAKE3-team/BLAKE3/releases]] like so:
 {{{
 b3sum index.html > assets/offline-index.txt && fd -tf -I -g -E 'offline-index.txt' '*' assets -X b3sum >> assets/offline-index.txt
 }}}
-The command above will create an `offline-index.txt` file in the `assets` directory with the BLAKE3 hashes of all files in the `assets` directory and the `index.html` file. Therefore it is important that you run this command after building your story and placing all assets in the `assets` directory.
+The command above will create an {{{offline-index.txt}}} file in the {{{assets}}} directory with the BLAKE3 hashes of all files in the {{{assets}}} directory and the {{{index.html}}} file. Therefore it is important that you run this command after building your story and placing all assets in the {{{assets}}} directory.
 
 The service worker will check for updates to the asset index file and update the cached assets accordingly when a new version is detected.
 
