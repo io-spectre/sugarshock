@@ -21,6 +21,27 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: ".node-version"
+      - name: Install b3sum
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install b3sum
+      - name: Install rust-fd
+        run: |
+          curl -sLO https://github.com/sharkdp/fd/releases/download/v10.3.0/fd-v10.3.0-x86_64-unknown-linux-gnu.tar.gz
+          echo "c3c2bc79f838e780173fc8f18b337ec273e7ba17c7ff8f551be29fc3c19b7916  fd-v10.3.0-x86_64-unknown-linux-gnu.tar.gz" | sha256sum -c -
+          mkdir -p .bin
+          tar -xf fd-v10.3.0-x86_64-unknown-linux-gnu.tar.gz -C .bin
+          echo "$(pwd)/.bin/fd-v10.3.0-x86_64-unknown-linux-gnu" >> $GITHUB_PATH
+      - name: Setup tweego
+        run: |
+          curl -sLO https://github.com/tmedwards/tweego/releases/download/v2.1.1/tweego-2.1.1-linux-x64.zip
+          echo "2ed11c3aa66c88ec5382b51061c7782152632b88916777428ab57a66feb7e5aa  tweego-2.1.1-linux-x64.zip" | sha256sum -c -
+          unzip tweego-2.1.1-linux-x64.zip -d .bin/tweego
+          chmod +x .bin/tweego/tweego
+          echo "$(pwd)/.bin/tweego" >> $GITHUB_PATH
+          curl -sLO https://github.com/tmedwards/sugarcube-2/releases/download/v2.37.3/sugarcube-2.37.3-for-twine-2.1-local.zip
+          echo "da00a8c15ec4e88a9e231a3ff6c516c57055f84231bb999f869ed34ade353dab  sugarcube-2.37.3-for-twine-2.1-local.zip" | sha256sum -c -
+          unzip -o sugarcube-2.37.3-for-twine-2.1-local.zip -d .bin/tweego/storyformats
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build project
